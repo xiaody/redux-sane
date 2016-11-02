@@ -1,0 +1,32 @@
+{
+  "name": "redux-sane",
+  "version": "1.0.1",
+  "description": "A redux middleware that provides sane default behaviors for non-object actions",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run lint && npm run spec",
+    "lint": "standard",
+    "spec": "nyc -s ava",
+    "spec:watch": "ava --timeout=10s --watch",
+    "report": "nyc report",
+    "report:summary": "nyc report -r=text-summary",
+    "report:html": "nyc report -r=html",
+    "coverage": "npm run spec && npm run report"
+  },
+  "repository": "xiaody/redux-sane",
+  "keywords": [
+    "redux-middleware",
+    "function",
+    "thunk",
+    "promise",
+    "generator"
+  ],
+  "author": "xiaody",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "0.16.0",
+    "nyc": "8.3.2",
+    "sinon": "1.17.6",
+    "standard": "8.5.0"
+  }
+}
