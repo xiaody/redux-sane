@@ -1,6 +1,6 @@
 {
   "name": "redux-sane",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A redux middleware that provides sane default behaviors for non-object actions",
   "main": "index.js",
   "scripts": {
