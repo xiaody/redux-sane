@@ -3,7 +3,7 @@ import {spy} from 'sinon'
 import middleware from '../index'
 
 const RESOLVED = Promise.resolve('success')
-const REJECTED = Promise.reject(new Error('error'))
+const ERROR = new Error('error')
 const VALUE_OF_NEXT = 'VALUE_OF_NEXT'
 const next = () => VALUE_OF_NEXT
 
@@ -26,7 +26,7 @@ test('promise: resolved', (t) => {
 test('promise: rejected', (t) => {
   const {sane, next} = t.context
 
-  return sane(REJECTED)
+  return sane(Promise.reject(ERROR))
     .then(() => t.fail())
     .catch((e) => {
       t.is(next.callCount, 0)
@@ -48,7 +48,7 @@ test('promise: fn => resolved', (t) => {
 
 test('promise: fn => rejected', (t) => {
   const {sane, next} = t.context
-  const fn = () => REJECTED
+  const fn = () => Promise.reject(ERROR)
 
   return sane(fn)
     .then(() => t.fail())

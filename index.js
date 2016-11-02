@@ -36,7 +36,9 @@ module.exports = function (store) {
         // loop and dispatch every value of a generator, promise awarely.
         // NOTE the return value of your generator will not be dispatched!
         return new Promise(function (resolve, reject) {
-          ;(function loop ({value, done}) {
+          ;(function loop (item) {
+            var value = item.value
+            var done = item.done
             Promise.resolve(value).then(function (v) {
               if (done) {
                 resolve(v)
