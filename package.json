@@ -4,8 +4,9 @@
   "description": "A redux middleware that provides sane default behaviors for non-object actions",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run spec",
+    "test": "npm run lint && npm run spec && npm run report",
     "lint": "standard",
+    "lint:fix": "standard --fix",
     "spec": "nyc -s ava",
     "spec:watch": "ava --timeout=10s --watch",
     "report": "nyc report",
@@ -24,9 +25,9 @@
   "author": "xiaody",
   "license": "MIT",
   "devDependencies": {
-    "ava": "0.17.0",
-    "nyc": "10.0.0",
-    "sinon": "1.17.6",
-    "standard": "8.6.0"
+    "ava": "0.19.0",
+    "nyc": "10.2.0",
+    "sinon": "2.1.0",
+    "standard": "10.0.1"
   }
 }
