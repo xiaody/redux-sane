@@ -4,7 +4,7 @@
   "description": "A redux middleware that provides sane default behaviors for non-object actions",
   "main": "index.js",
   "scripts": {
-    "test": "npm run lint && npm run spec && npm run report",
+    "test": "npm run lint && npm run spec",
     "lint": "standard",
     "lint:fix": "standard --fix",
     "spec": "nyc ava",
