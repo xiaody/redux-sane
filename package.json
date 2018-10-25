@@ -21,10 +21,10 @@
   "author": "xiaody",
   "license": "MIT",
   "devDependencies": {
-    "ava": "0.20.0",
-    "nyc": "11.0.3",
+    "ava": "0.25.0",
+    "nyc": "13.1.0",
     "sinon": "2.3.6",
-    "standard": "10.0.2"
+    "standard": "12.0.1"
   },
   "nyc": {
     "reporter": [

@@ -1,5 +1,5 @@
 import test from 'ava'
-import {spy} from 'sinon'
+import { spy } from 'sinon'
 import middleware from '../index'
 
 const VALUE_OF_NEXT = 'VALUE_OF_NEXT'
@@ -11,8 +11,8 @@ test.beforeEach(t => {
 })
 
 test('default: pass through', (t) => {
-  const {sane, next} = t.context
-  const action = {type: 'whatever'}
+  const { sane, next } = t.context
+  const action = { type: 'whatever' }
 
   t.is(sane(action), VALUE_OF_NEXT)
   t.is(next.callCount, 1)

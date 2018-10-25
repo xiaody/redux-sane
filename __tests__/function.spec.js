@@ -1,5 +1,5 @@
 import test from 'ava'
-import {spy} from 'sinon'
+import { spy } from 'sinon'
 import middleware from '../index'
 
 const STATE = {}
@@ -15,7 +15,7 @@ test.beforeEach(t => {
 })
 
 test('function: noop', (t) => {
-  const {sane, next} = t.context
+  const { sane, next } = t.context
   const noop = function () {}
   const ret = sane(noop)
 
@@ -25,7 +25,7 @@ test('function: noop', (t) => {
 })
 
 test('function: thunk', (t) => {
-  const {sane, next} = t.context
+  const { sane, next } = t.context
   const thunk = (dispatch, getState) => {
     return dispatch(getState())
   }
@@ -38,7 +38,7 @@ test('function: thunk', (t) => {
 })
 
 test('function: throw', (t) => {
-  const {sane} = t.context
+  const { sane } = t.context
   const throwFn = () => { throw ERROR }
 
   t.throws(() => sane(throwFn))

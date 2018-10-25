@@ -1,5 +1,5 @@
 import test from 'ava'
-import {spy} from 'sinon'
+import { spy } from 'sinon'
 import middleware from '../index'
 
 const VALUE_OF_NEXT = 'VALUE_OF_NEXT'
@@ -11,7 +11,7 @@ test.beforeEach(t => {
 })
 
 test('generator: generator or generator function', (t) => {
-  const {next, sane} = t.context
+  const { next, sane } = t.context
   const generatorFn = function * () {
     yield 0
     yield Promise.resolve(1)
@@ -33,7 +33,7 @@ test('generator: generator or generator function', (t) => {
 })
 
 test('generator: empty', (t) => {
-  const {next, sane} = t.context
+  const { next, sane } = t.context
   const generator = function * () {}
   return sane(generator).then((v) => {
     t.is(next.callCount, 0)
@@ -42,7 +42,7 @@ test('generator: empty', (t) => {
 })
 
 test('generator: caught rejected promise', (t) => {
-  const {next, sane} = t.context
+  const { next, sane } = t.context
   const generator = function * () {
     let ret = 'success'
     try {
@@ -60,7 +60,7 @@ test('generator: caught rejected promise', (t) => {
 })
 
 test('generator: uncaught rejected promise', (t) => {
-  const {sane} = t.context
+  const { sane } = t.context
   const generator = function * () {
     yield Promise.reject(new Error('uncaught error'))
     return 'success'
@@ -69,7 +69,7 @@ test('generator: uncaught rejected promise', (t) => {
 })
 
 test('generator: done rejected promise', (t) => {
-  const {sane} = t.context
+  const { sane } = t.context
   const generator = function * () {
     return Promise.reject(new Error('uncaught error'))
   }
@@ -77,7 +77,7 @@ test('generator: done rejected promise', (t) => {
 })
 
 test('generator: delegate', (t) => {
-  const {sane, next} = t.context
+  const { sane, next } = t.context
   const g1 = function * () {
     yield 1; yield 2; return 'whatever'
   }
