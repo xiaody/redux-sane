@@ -1,5 +1,5 @@
 import test from 'ava'
-import {spy} from 'sinon'
+import { spy } from 'sinon'
 import middleware from '../index'
 
 const RESOLVED = Promise.resolve('success')
@@ -13,7 +13,7 @@ test.beforeEach(t => {
 })
 
 test('promise: resolved', (t) => {
-  const {sane, next} = t.context
+  const { sane, next } = t.context
 
   return sane(RESOLVED)
     .then((ret) => {
@@ -24,7 +24,7 @@ test('promise: resolved', (t) => {
 })
 
 test('promise: rejected', (t) => {
-  const {sane, next} = t.context
+  const { sane, next } = t.context
 
   return sane(Promise.reject(ERROR))
     .then(() => t.fail())
@@ -35,7 +35,7 @@ test('promise: rejected', (t) => {
 })
 
 test('promise: fn => resolved', (t) => {
-  const {sane, next} = t.context
+  const { sane, next } = t.context
   const fn = () => RESOLVED
 
   return sane(fn)
@@ -47,7 +47,7 @@ test('promise: fn => resolved', (t) => {
 })
 
 test('promise: fn => rejected', (t) => {
-  const {sane, next} = t.context
+  const { sane, next } = t.context
   const fn = () => Promise.reject(ERROR)
 
   return sane(fn)

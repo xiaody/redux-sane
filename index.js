@@ -22,14 +22,16 @@ function isGenerator (x) {
 module.exports = function (store) {
   var getState = store && isFunction(store.getState) ? store.getState : noop
 
-  return function (next) {
-    return function (action) {
+  return function (nextMiddleware) {
+    return function sane (action) {
+      var dispatch = store && isFunction(store.dispatch) ? store.dispatch.bind(store) : sane
+
       if (isFunction(action)) {
-        action = action(next, getState)
+        action = action(dispatch, getState)
       }
 
       if (isPromise(action)) {
-        return action.then(next, null)
+        return action.then(dispatch, null)
       }
 
       if (isGenerator(action)) {
@@ -37,13 +39,13 @@ module.exports = function (store) {
         // NOTE the return value of your generator will not be dispatched!
         return new Promise(function (resolve, reject) {
           ;(function loop (item) {
-            var value = item.value
             var done = item.done
+            var value = done ? item.value : dispatch(item.value)
             Promise.resolve(value).then(function (v) {
               if (done) {
                 resolve(v)
               } else {
-                loop(action.next(next(v)))
+                loop(action.next(v))
               }
             }, function (e) {
               if (done) {
@@ -56,7 +58,7 @@ module.exports = function (store) {
         })
       }
 
-      return next(action)
+      return nextMiddleware(action)
     }
   }
 }
